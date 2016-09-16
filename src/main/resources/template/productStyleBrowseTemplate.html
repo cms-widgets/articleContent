@@ -1,0 +1,15 @@
+<!--预览视图-->
+<div xmlns:th="http://www.thymeleaf.org">
+    <h3 th:text="${abstractContent.title}">标题</h3>
+    <div>
+        <span th:text="'创建时间：'+${{abstractContent.createTime}}">2016-12-21</span>
+    </div>
+    <!--产品缩略图 -->
+    <img res:src="${abstractContent.thumbUri}" src=""/>
+    <!--产品内容（富文本）-->
+    <div th:utext="${abstractContent.content}">
+        文章内容（富文本）
+    </div>
+
+</div>
+<!--/预览视图-->
