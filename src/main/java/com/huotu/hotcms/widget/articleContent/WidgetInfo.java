@@ -34,7 +34,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
 
 
@@ -65,7 +64,7 @@ public class WidgetInfo implements Widget, PreProcessWidget {
 
     @Override
     public String description(Locale locale) {
-        if (locale.equals(Locale.CHINESE)) {
+        if (locale.equals(Locale.CHINA)) {
             return "这是一个文章内容控件，你可以对组件进行自定义修改。";
         }
         return "This is a article Content,  you can make custom change the component.";
