@@ -1,0 +1,20 @@
+<!--预览视图-->
+<div xmlns:th="http://www.thymeleaf.org">
+    <h3 th:text="${abstractContent.title}">标题</h3>
+    <div>
+        <span th:text="'作者：'+${abstractContent.author}">作者</span>
+        <span th:text="'文章来源：'+${abstractContent.articleSource}">原创</span>
+        <span th:text="'创建时间：'+${{abstractContent.createTime}}">2016-12-21</span>
+        <span th:text="'浏览：'+${abstractContent.scans}">浏览：123</span>
+        <!--应该用图标显示 赞和踩-->
+        <span th:text="'赞：'+${abstractContent.lauds}">赞：1999</span>
+        <span th:text="'踩：'+${abstractContent.unlauds}">踩：123</span>
+    </div>
+
+    <img res:src="${abstractContent.thumbUri}" src=""/>
+    <!--文章内容（富文本）-->
+    <div th:utext="${abstractContent.content}">
+        文章内容（富文本）
+    </div>
+</div>
+<!--/预览视图-->
