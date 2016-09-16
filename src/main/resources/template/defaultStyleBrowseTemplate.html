@@ -1,20 +1,26 @@
 <!--预览视图-->
-<div xmlns:th="http://www.thymeleaf.org">
-    <h3 th:text="${abstractContent.title}">标题</h3>
-    <div>
-        <span th:text="'作者：'+${abstractContent.author}">作者</span>
-        <span th:text="'文章来源：'+${abstractContent.articleSource}">原创</span>
-        <span th:text="'创建时间：'+${{abstractContent.createTime}}">2016-12-21</span>
-        <span th:text="'浏览：'+${abstractContent.scans}">浏览：123</span>
-        <!--应该用图标显示 赞和踩-->
-        <span th:text="'赞：'+${abstractContent.lauds}">赞：1999</span>
-        <span th:text="'踩：'+${abstractContent.unlauds}">踩：123</span>
+<div xmlns:th="http://www.thymeleaf.org" class="article-details">
+    <h2 th:text="${abstractContent.title}">标题</h2>
+    <div class="article-info">
+        <span th:text="'作者：'+${abstractContent.author}">作者：火图科技</span> /
+        <span th:text="'时间：'+${{abstractContent.createTime}}">时间：2015-09-14</span> /
+        <span th:text="'来源：'+${abstractContent.articleSource}">来源：原创</span> /
+        <span  th:text="'浏览：'+${abstractContent.scans}">浏览：123</span>
     </div>
-
-    <img res:src="${abstractContent.thumbUri}" src=""/>
     <!--文章内容（富文本）-->
-    <div th:utext="${abstractContent.content}">
+    <div th:utext="${abstractContent.content}" class="article-content">
         文章内容（富文本）
+    </div>
+    <!--应该用图标显示 赞和踩-->
+    <div class="article-laud">
+        <a class="btn btn-red btn-sm" href="javascript:void(0);">
+            <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+            <span th:text="'赞('+${abstractContent.lauds}+')'">赞(1999)</span>
+        </a>
+        <a class="btn btn-white btn-sm" href="javascript:void(0);">
+            <i class="fa fa-thumbs-down" aria-hidden="true"></i>
+            <span th:text="'踩('+${abstractContent.unlauds}'+)'">踩(123)</span>
+        </a>
     </div>
 </div>
 <!--/预览视图-->
