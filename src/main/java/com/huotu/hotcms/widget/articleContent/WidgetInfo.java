@@ -17,12 +17,14 @@ import com.huotu.hotcms.service.entity.Category;
 import com.huotu.hotcms.service.entity.Site;
 import com.huotu.hotcms.service.repository.ArticleRepository;
 import com.huotu.hotcms.service.repository.CategoryRepository;
+import com.huotu.hotcms.service.service.CategoryService;
 import com.huotu.hotcms.widget.CMSContext;
 import com.huotu.hotcms.widget.ComponentProperties;
 import com.huotu.hotcms.widget.PreProcessWidget;
 import com.huotu.hotcms.widget.Widget;
 import com.huotu.hotcms.widget.WidgetStyle;
 import me.jiangcai.lib.resource.service.ResourceService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
@@ -34,7 +36,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.UUID;
 
 
 /**
@@ -43,6 +44,9 @@ import java.util.UUID;
 public class WidgetInfo implements Widget, PreProcessWidget {
     public static final String CONTENT_ID="contentId";
     public static final String CONTENT="abstractContent";
+
+    @Autowired
+    private CategoryService categoryService;
 
     @Override
     public String groupId() {
@@ -121,8 +125,8 @@ public class WidgetInfo implements Widget, PreProcessWidget {
             Category category = new Category();
             category.setSite(site);
             category.setContentType(ContentType.Article);
-            category.setSerial(UUID.randomUUID().toString());
             category.setName("文章数据源");
+            categoryService.init(category);
             category.setCreateTime(LocalDateTime.now());
             category = categoryRepository.save(category);
             Article article = new Article();
