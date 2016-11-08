@@ -18,13 +18,8 @@ import com.huotu.hotcms.service.entity.Site;
 import com.huotu.hotcms.service.repository.ArticleRepository;
 import com.huotu.hotcms.service.repository.CategoryRepository;
 import com.huotu.hotcms.service.service.CategoryService;
-import com.huotu.hotcms.widget.CMSContext;
-import com.huotu.hotcms.widget.ComponentProperties;
-import com.huotu.hotcms.widget.PreProcessWidget;
-import com.huotu.hotcms.widget.Widget;
-import com.huotu.hotcms.widget.WidgetStyle;
+import com.huotu.hotcms.widget.*;
 import me.jiangcai.lib.resource.service.ResourceService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
@@ -44,9 +39,6 @@ import java.util.Map;
 public class WidgetInfo implements Widget, PreProcessWidget {
     public static final String CONTENT_ID="contentId";
     public static final String CONTENT="abstractContent";
-
-    @Autowired
-    private CategoryService categoryService;
 
     @Override
     public String groupId() {
@@ -76,7 +68,7 @@ public class WidgetInfo implements Widget, PreProcessWidget {
 
     @Override
     public String dependVersion() {
-        return "1.0-SNAPSHOT";
+        return "1.0";
     }
 
     @Override
@@ -118,6 +110,8 @@ public class WidgetInfo implements Widget, PreProcessWidget {
         Site site = CMSContext.RequestContext().getSite();
         ArticleRepository articleRepository = CMSContext.RequestContext().getWebApplicationContext()
                 .getBean(ArticleRepository.class);
+        CategoryService categoryService = CMSContext.RequestContext().getWebApplicationContext()
+                .getBean(CategoryService.class);
         List<Article> articles = articleRepository.findByCategory_Site(site);
         if (articles.isEmpty()) {
             CategoryRepository categoryRepository = CMSContext.RequestContext().getWebApplicationContext()
